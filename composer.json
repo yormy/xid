@@ -1,0 +1,72 @@
+{
+    "name": "yormy/xid",
+    "description": "Add a random validatable public id to a model that can be safely exposed and validated",
+    "keywords": [
+        "yormy",
+        "xid"
+    ],
+    "homepage": "https://github.com/yormy/xid",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Yormy",
+            "email": "dev@yormy.com",
+            "homepage": "https://yormy.com",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": "^8.1|^8.2",
+        "ext-zip": "*",
+        "linkorb/xuid": "^1.4.0"
+    },
+    "require-dev": {
+        "yormy/dev-tools-laravel": "^1.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Yormy\\Xid\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Yormy\\Xid\\Tests\\": "tests"
+        }
+    },
+    "scripts": {
+        "---FIX---": "------------------------------",
+        "pint": "pint",
+        "cs-fixer": "phpcbf",
+        "md": "vendor/bin/phpmd . html cleancode --reportfile report.html",
+        "phpcs": "phpcs --standard=PSR2 -s --exclude=Generic.Files.LineLength --standard=./phpcs.xml --report-file=phpcs-report.txt",
+        "---PSALM---": "------------------------------",
+        "stan": "vendor/bin/phpstan analyse",
+        "psalm": "vendor/bin/psalm --no-diff --no-cache --report-show-info=false --report=psalm-report.txt",
+        "psalm-debug": "vendor/bin/psalm --no-cache --debug --debug-by-line",
+        "---TESTS---": "------------------------------",
+        "test": "vendor/bin/phpunit --colors=always --testdox",
+        "test:now": "vendor/bin/phpunit --colors=always --testdox --group=testnow",
+        "test:coverage": "vendor/bin/phpunit --coverage-html coverage",
+        "format": "vendor/bin/pint",
+        "---------": "------------------------------",
+        "post-autoload-dump": "@php ./vendor/bin/testbench package:discover --ansi"
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Yormy\\Xid\\XidServiceProvider"
+            ],
+            "aliases": {
+                "Xid": "Yormy\\Xid\\XidFacade"
+            }
+        }
+    },
+    "config": {
+        "sort-packages": true,
+        "allow-plugins": {
+            "phpstan/extension-installer": true
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
