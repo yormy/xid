@@ -3,17 +3,15 @@
 namespace Yormy\Xid\Rules;
 
 use Exception;
+use Illuminate\Contracts\Validation\InvokableRule;
 use Yormy\Xid\Observers\Events\XidInvalidEvent;
 use Yormy\Xid\Services\XidService;
-
-
-use Illuminate\Contracts\Validation\InvokableRule;
 
 class ValidXidRule implements InvokableRule
 {
     private ?Exception $exception;
 
-    public function __construct(?Exception $exception = null)
+    public function __construct(Exception $exception = null)
     {
         $this->exception = $exception;
     }
