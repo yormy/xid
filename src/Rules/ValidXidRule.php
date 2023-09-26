@@ -2,47 +2,22 @@
 
 namespace Yormy\Xid\Rules;
 
-use Exception;
-use Illuminate\Contracts\Validation\InvokableRule;
+use Closure;
+use Illuminate\Contracts\Validation\ValidationRule;
 use Yormy\Xid\Observers\Events\XidInvalidEvent;
 use Yormy\Xid\Services\XidService;
 
-class ValidXidRule implements InvokableRule
+class ValidXidRule implements ValidationRule
 {
-    private ?Exception $exception;
 
-    public function __construct(Exception $exception = null)
-    {
-        $this->exception = $exception;
-    }
-
-    /**
-     * Run the validation rule.
-     *
-     * @param  string  $attribute
-     * @param  mixed  $value
-     * @param  \Closure(string): \Illuminate\Translation\PotentiallyTranslatedString  $fail
-     * @return void
-     */
-    public function __invoke($attribute, $value, $fail)
+    public function validate(string $attribute, mixed $value, Closure $fail): void
     {
         $isValid = XidService::validate($value);
 
         if (! $isValid) {
-            $this->failed();
+            event(new XidInvalidEvent());
 
             $fail('xid.message.invalid');
         }
-    }
-
-    private function failed()
-    {
-        event(new XidInvalidEvent()); // When the xid is invalid this is probably a hacking attempt
-
-        if ($this->exception) {
-            throw $this->exception;
-        }
-
-        return false;
     }
 }

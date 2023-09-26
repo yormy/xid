@@ -2,9 +2,22 @@
 
 namespace Yormy\Xid\Observers\Events;
 
-class XidInvalidEvent extends XidEvent
-{
-    private string $code = 'XID_INVALID';
+use Illuminate\Foundation\Events\Dispatchable;
+use Illuminate\Queue\SerializesModels;
+use Yormy\Xid\Observers\Events\BaseEvent;
 
-    private string $severity = 'medium';
+class XidInvalidEvent extends BaseEvent
+{
+    public function __construct(
+        private string $xid,
+    )
+    {
+        // ...
+        parent::__construct();
+    }
+
+    public function getXid(): string
+    {
+        return $this->xid;
+    }
 }
