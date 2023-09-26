@@ -22,13 +22,15 @@ class XidService
         return $xid.''.substr((string) abs(crc32($xid)), 0, 3);
     }
 
-    public static function validate(string $xid): bool
+    public static function validate(string $xid, bool $silent = false): bool
     {
         if (
             (strlen($xid) > 30) ||
             ! self::hasValidChecksum($xid)
         ) {
-            Event::dispatch(new XidInvalidEvent());
+            if (!$silent) {
+                Event::dispatch(new XidInvalidEvent($xid));
+            }
 
             return false;
         }

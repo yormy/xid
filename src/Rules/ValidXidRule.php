@@ -15,7 +15,7 @@ class ValidXidRule implements ValidationRule
         $isValid = XidService::validate($value);
 
         if (! $isValid) {
-            event(new XidInvalidEvent());
+            event(new XidInvalidEvent($value));
 
             $fail('xid.message.invalid');
         }

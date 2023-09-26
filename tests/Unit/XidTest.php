@@ -73,7 +73,7 @@ class XidTest extends TestCase
         $validationRule = new ValidXidRule();
 
         /** @psalm-suppress InvalidArgument */
-        $validationRule->__invoke('field', XidService::generate(), function () {
+        $validationRule->validate('field', XidService::generate(), function () {
             $this->assertTrue(false); // should not call failure
         });
 
@@ -87,7 +87,7 @@ class XidTest extends TestCase
 
         $validationRule = new ValidXidRule();
         /** @psalm-suppress InvalidArgument */
-        $validationRule->__invoke('field', 'xxx', function () {
+        $validationRule->validate('field', 'xxx', function () {
             Event::assertDispatched(XidInvalidEvent::class);
             $this->assertTrue(true);
         });
