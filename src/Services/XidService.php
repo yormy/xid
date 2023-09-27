@@ -22,7 +22,8 @@ class XidService
         return $xid.''.substr((string) abs(crc32($xid)), 0, 3);
     }
 
-    public static function validate(string $xid, bool $silent = false): bool
+
+    private static function isValid(string $xid, bool $silent = false): bool
     {
         if (
             (strlen($xid) > 30) ||
@@ -33,6 +34,20 @@ class XidService
             }
 
             return false;
+        }
+
+        return true;
+    }
+
+    public static function validate(string $xid, bool $silent = false): bool
+    {
+        return self::isValid($xid, $silent);
+    }
+
+    public static function validateOrAbort(string $xid, bool $silent = false): bool
+    {
+        if (!self::isValid($xid, $silent)) {
+            abort(404);
         }
 
         return true;

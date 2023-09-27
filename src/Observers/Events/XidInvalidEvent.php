@@ -20,4 +20,9 @@ class XidInvalidEvent extends BaseEvent
     {
         return $this->xid;
     }
+
+    public function getData(): string
+    {
+        return $this->xid;
+    }
 }
