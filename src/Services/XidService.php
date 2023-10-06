@@ -44,7 +44,7 @@ class XidService
         return self::isValid($xid, $silent);
     }
 
-    public static function validateOrAbort(string $xid, bool $silent = false): bool
+    public static function validateOrFail(string $xid, bool $silent = false): bool
     {
         if (!self::isValid($xid, $silent)) {
             abort(404);
