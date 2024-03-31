@@ -1,9 +1,9 @@
 import { defineConfig } from 'vitepress'
 
 export default defineConfig({
-    title: "apiresponse",
+    title: "xid",
     description: "",
-    base: '/apiresponse/',
+    base: '/xid/',
     head: [
         ['link', { rel: "apple-touch-icon", sizes: "180x180", href: "/assets/images/apple-touch-icon.png"}],
         ['link', { rel: "icon", type: "image/png", sizes: "32x32", href: "/assets/images/favicon-32x32.png"}],
@@ -15,14 +15,14 @@ export default defineConfig({
         },
         nav: [
           { text: 'Home', link: '/' },
-          { text: 'Guide', link: '/v1/introduction/what-is-apiresponse' },
+          { text: 'Guide', link: '/v1/introduction/what-is-xid' },
         ],
 
         sidebar: [
             {
                 text: 'Introduction',
                 items: [
-                    { text: 'What is Guidelines', link: '/v1/introduction/what-is-apiresponse' },
+                    { text: 'What is Guidelines', link: '/v1/introduction/what-is-xid' },
                 ]
             },
 
@@ -49,7 +49,7 @@ export default defineConfig({
             copyright: 'Copyright © 2022 to present Yormy'
         },
         socialLinks: [
-            { icon: 'github', link: 'https://github.com/yormy/apiresponse' }
+            { icon: 'github', link: 'https://github.com/yormy/xid' }
         ]
       }
 
