@@ -20,7 +20,7 @@
         "linkorb/xuid": "^1.4.0"
     },
     "require-dev": {
-        "yormy/dev-tools-laravel": "^1.0"
+        "yormy/dev-tools-laravel": "dev-master"
     },
     "autoload": {
         "psr-4": {
@@ -79,7 +79,8 @@
     "config": {
         "sort-packages": true,
         "allow-plugins": {
-            "phpstan/extension-installer": true
+            "phpstan/extension-installer": true,
+            "dealerdirect/phpcodesniffer-composer-installer": true
         }
     },
     "minimum-stability": "dev",
