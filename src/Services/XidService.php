@@ -22,14 +22,13 @@ class XidService
         return $xid.''.substr((string) abs(crc32($xid)), 0, 3);
     }
 
-
     private static function isValid(string $xid, bool $silent = false): bool
     {
         if (
             (strlen($xid) > 30) ||
             ! self::hasValidChecksum($xid)
         ) {
-            if (!$silent) {
+            if (! $silent) {
                 Event::dispatch(new XidInvalidEvent($xid));
             }
 
@@ -46,7 +45,7 @@ class XidService
 
     public static function validateOrFail(string $xid, bool $silent = false): bool
     {
-        if (!self::isValid($xid, $silent)) {
+        if (! self::isValid($xid, $silent)) {
             abort(404);
         }
 
