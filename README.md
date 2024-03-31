@@ -16,3 +16,4 @@
 ## License
 
 The MIT License (MIT). Please see [License File]((https://yormy.github.io/xid/general/license.html) for more information.
+
