@@ -9,7 +9,6 @@ use Yormy\Xid\Services\XidService;
 
 class ValidXidRule implements ValidationRule
 {
-
     public function validate(string $attribute, mixed $value, Closure $fail): void
     {
         $isValid = XidService::validate($value);
